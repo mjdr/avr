@@ -3,6 +3,7 @@
 
 
 typedef unsigned char uchar;
+#define send_func(A) SPI_send(A)
 
 
 
@@ -10,12 +11,12 @@ uchar SD_sendCMD(uchar cmd, uchar arg0, uchar arg1, uchar arg2, uchar arg3, ucha
  uchar result;
  long int counter = 0;
  
- SPI_send(cmd);
- SPI_send(arg0);
- SPI_send(arg1);
- SPI_send(arg2);
- SPI_send(arg3);
- SPI_send(crc);
+ send_func(cmd);
+ send_func(arg0);
+ send_func(arg1);
+ send_func(arg2);
+ send_func(arg3);
+ send_func(crc);
  
  do{
   result = (uchar) SPI_receive();
@@ -26,20 +27,20 @@ uchar SD_sendCMD(uchar cmd, uchar arg0, uchar arg1, uchar arg2, uchar arg3, ucha
    	)
    );
  
- return !!result;
+ return result;
 
 }
 
 char SD_init(){
  for(char i = 0;i < 10;i++)
-  SPI_send(0xFF);
+  send_func(0xFF);
  
  SS_PORT &= ~(1 << SS_PIN);
   
  if(SD_sendCMD(SD_CMD0,0,0,0,0, 0x51) != 0x01)
   return 1;
   
- SPI_send(0xFF);
+ send_func(0xFF);
   
  uchar result;
  long int counter = 0;
@@ -47,7 +48,7 @@ char SD_init(){
  do{
   result = SD_sendCMD(SD_CMD1,0,0,0,0, 0x51);
   counter++;
- } while((
+ } while(
  	(result != 0 &&
 	counter < 0xFFFF
    	)

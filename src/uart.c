@@ -13,12 +13,12 @@ void UART_init(){
 }
 
 void UART_trasmit(char data){
- while ( !( UCSRA & (1<<UDRE)) );
+ wait_for_one(UCSRA, UDRE);
  UDR = data;
 }
 
 char UART_receive(){
- while ( !(UCSRA & (1<<RXC)));
+ wait_for_one(UCSRA, RXC);
  return UDR;
 }
 
