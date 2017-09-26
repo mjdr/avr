@@ -34,6 +34,16 @@ Some libraries for avr microcontrollers
  void WRITER_writeHex8(void (*write_func)(char), uint8_t);
  void WRITER_writeDec16(void (*write_func)(char), uint16_t);
 ```
+## PWM
+```c
+
+ void PWM_initTimer1();
+ void PWM_setOC1A(pwm_value);
+ void PWM_setOC1B(pwm_value);
+ 
+ void PWM_initTimer2();
+ void PWM_setOCR2(char value);
+```
 
 
 
