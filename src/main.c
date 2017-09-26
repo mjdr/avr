@@ -4,28 +4,18 @@
 #include <avr/interrupt.h>
 #include <util/delay.h>
 
-#include "adc.h"
-#include "eeprom_buffer.h"
-#include "uart.h"
-#include "writer.h"
+
 #include "pwm.h"
 
-#define E EBUFFER_writeChar
-#define U UART_send
-
-
-#define LED_PORT PORTB
-#define LED_PIN 0
-#define LED_ON LED_PORT |= (1 << LED_PIN)
-#define LED_OFF LED_PORT &= ~(1 << LED_PIN)
 
 
 
 
+//960Hz
 
 
 void main(){
- DDRB |= 0b111;
+ DDRB |= 0b1111;
  /*
  ADC_init();
  ADC_setChannel(5);
@@ -41,12 +31,26 @@ void main(){
  */
 
  PWM_initTimer1();
+ PWM_initTimer2();
+ 
  char dir = 1;
- int val = 0;
+ int val = 0; 
+ 
+ PWM_setOC1A(0x3FF >> 1);
+ PWM_setOC1B(0x3FF >> 1);
+ PWM_setOCR2(0xFF >> 1);
+ _delay_ms(10000);
+  
  
  while(1){ 
-  PWM_setOC1A(128);
-  PWM_setOC1B(128);
+  if(val == 0) dir = 1;
+  if(val == 0x3FF) dir = -1;
+  
+  PWM_setOC1A(val);
+  PWM_setOC1B(val);
+  PWM_setOCR2(val >> 2);
+  _delay_ms(1000);
+  val += dir;
  }
 
  

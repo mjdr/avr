@@ -1,6 +1,5 @@
 #include "pwm.h"
 
-#define PWM_10bit
 
 void PWM_initTimer1(){
  TCCR1A |= (1 << COM1A1);
@@ -14,13 +13,22 @@ void PWM_initTimer1(){
  TCCR1A |= (1 << WGM11) | (1 << WGM10);
  TCCR1B |= (1 << WGM12);
  #endif
- // set 10bit phase corrected PWM Mode
  TCCR1B |= (1 << CS10);
 }
-void PWM_setOC1A(int value){
+void PWM_initTimer2(){
+ TCCR2 |= (1 << WGM20) | (1 << WGM21);
+ TCCR2 |= (1 << COM21);
+ TCCR2 |= (1 << CS20);
+}
+
+
+void PWM_setOC1A(pwm_value value){
  OCR1A = value;
 }
-void PWM_setOC1B(int value){
+void PWM_setOC1B(pwm_value value){
  OCR1B = value;
+}
+void PWM_setOCR2(char value){
+ OCR2 = value;
 }
 
