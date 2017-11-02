@@ -1,7 +1,7 @@
 #pragma once
 #include <avr/io.h>
 
-#define PWM_10bit
+#define PWM_8bit
 
 #ifdef PWM_8bit
  //F_CPU 1MHz ------ F_PWM 3.83kHz

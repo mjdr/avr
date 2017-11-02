@@ -22,13 +22,13 @@ void PWM_initTimer2(){
 }
 
 
-void PWM_setOC1A(pwm_value value){
+__inline__ void PWM_setOC1A(pwm_value value){
  OCR1A = value;
 }
-void PWM_setOC1B(pwm_value value){
+__inline__ void PWM_setOC1B(pwm_value value){
  OCR1B = value;
 }
-void PWM_setOCR2(char value){
+__inline__ void PWM_setOCR2(char value){
  OCR2 = value;
 }
 

@@ -9,7 +9,7 @@ void UART_init(){
  UBRRH = (unsigned char)(MYUBRR>>8);
  UBRRL = (unsigned char) MYUBRR;
  UCSRB = (1<<RXEN)|(1<<TXEN);
- UCSRC = (1<<URSEL)|(1<<USBS)|(3<<UCSZ0);
+ UCSRC = (1<<URSEL)|(1<<USBS)|(1<<UCSZ0);
 }
 
 void UART_trasmit(char data){
