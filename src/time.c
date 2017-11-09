@@ -20,14 +20,14 @@ ISR(TIMER0_OVF_vect){
 
 
 
-void Time_init(){
+void TIME_init(){
 	TCCR0 |= (1 << CS02) | (1 << CS00); //prescaler
 	TIMSK |= (1 << TOIE0);
 	time = 0;
 	sei();
 }
 
-uint32_t Time_get(){
+uint32_t TIME_get(){
 	return time;
 }
 

@@ -9,6 +9,6 @@ typedef struct {
 
 
 
-void Delay_setTimeFunction(uint32_t(*)());
-void Delay_setup(Delay*, uint16_t);
-char Delay_isOver(Delay*);
+void DELAY_setTimeFunction(uint32_t(*)());
+void DELAY_setup(Delay*, uint16_t);
+char DELAY_isOver(Delay*);

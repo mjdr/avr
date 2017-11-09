@@ -1,6 +1,6 @@
 #pragma once
 
-#define F_CPU 1000000 
+#define F_CPU 1000000UL
 
 typedef char boolean;
 #define true 1

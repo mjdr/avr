@@ -4,5 +4,5 @@
 #include <stdint.h>
 
 
-void Time_init();
-uint32_t Time_get();
+void TIME_init();
+uint32_t TIME_get();

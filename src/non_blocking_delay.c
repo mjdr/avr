@@ -3,14 +3,14 @@
 
 uint32_t (*timeFunction)() = 0;
 
-void Delay_setTimeFunction(uint32_t (*tf)()){
+void DELAY_setTimeFunction(uint32_t (*tf)()){
 	timeFunction = tf;
 }
-void Delay_setup(Delay* delay, uint16_t duration){
+void DELAY_setup(Delay* delay, uint16_t duration){
 	delay->startTime = (*timeFunction)();
 	delay->duration = duration;
 }
-char Delay_isOver(Delay* delay){
+char DELAY_isOver(Delay* delay){
 	if(delay->startTime == -1)
 		return 1;
 	uint32_t t = (*timeFunction)();

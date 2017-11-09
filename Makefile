@@ -11,7 +11,7 @@ clear:
 compile:
 	$(CC) -c src/*.c
 	#$(CC) -o main.elf main.o adc.o uart.o eeprom_buffer.o writer.o pwm.o a_comp.o
-	$(CC) -o main.elf main.o eeprom_buffer.o writer.o ps2.o
+	$(CC) -o main.elf main.o #eeprom_buffer.o writer.o uart.o
 	mv *.o bin/
 	mv *.elf bin/
 
